@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music App Clone</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Auth View -->
+    <div id="auth-view" class="view">
+        <div class="auth-container">
+            <div class="logo-large">
+                <i class="fas fa-music"></i>
+                <span>Music App</span>
+            </div>
+            <h2 id="auth-title">Log in to Music App</h2>
+            <form id="login-form">
+                <div class="input-group">
+                    <label for="username">Email</label>
+                    <input type="email" id="username" placeholder="Email address" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn-primary" id="auth-btn">Log In</button>
+            </form>
+            <p class="auth-footer" id="auth-footer-text">Don't have an account? <span id="toggle-auth" style="color: var(--primary); cursor: pointer; text-decoration: underline;">Sign up</span></p>
+        </div>
+    </div>
+
+    <!-- App View -->
+    <div id="app-view" class="view hidden">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+                <div class="logo">
+                    <i class="fas fa-music"></i>
+                    <span>Music App</span>
+                </div>
+                <nav class="nav-menu">
+                    <ul>
+                        <li class="active" id="nav-home"><i class="fas fa-home"></i> Home</li>
+                        <li id="nav-search"><i class="fas fa-search"></i> Search</li>
+                        <li id="nav-library"><i class="fas fa-book-open"></i> Your Library</li>
+                    </ul>
+                </nav>
+                <div class="playlist-section">
+                    <div class="nav-item" id="nav-create-playlist"><i class="fas fa-plus-square"></i> Create Playlist</div>
+                    <div class="nav-item" id="nav-liked-songs"><i class="fas fa-heart"></i> Liked Songs</div>
+                </div>
+                <hr class="divider">
+            </aside>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <header class="top-header">
+                    <div class="nav-arrows">
+                        <button class="icon-btn-bg"><i class="fas fa-chevron-left"></i></button>
+                        <button class="icon-btn-bg"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="user-profile">
+                        <button id="logout-btn" class="btn-secondary">Log out</button>
+                    </div>
+                </header>
+                
+                <div id="home-view">
+                    <section class="content-section">
+                        <h2>Good evening</h2>
+                        <div class="featured-grid" id="featured-grid">
+                            <!-- Featured tracks injected via JS -->
+                        </div>
+                    </section>
+                    
+                    <section class="content-section">
+                        <h2>Made for you</h2>
+                        <div class="playlist-grid" id="playlist-grid">
+                            <!-- Tracks injected via JS -->
+                        </div>
+                    </section>
+                </div>
+
+                <div id="search-view" class="hidden">
+                    <section class="content-section">
+                        <div class="search-bar-container">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" id="search-input" placeholder="What do you want to listen to?">
+                        </div>
+                        <h2 style="margin-top: 24px;">Search Results</h2>
+                        <div class="list-view" id="search-results">
+                            <!-- Search results injected via JS -->
+                        </div>
+                    </section>
+                </div>
+
+                <div id="library-view" class="hidden">
+                    <section class="content-section">
+                        <h2>Your Playlists</h2>
+                        <div class="playlist-grid" id="library-playlists">
+                            <!-- User playlists injected via JS -->
+                        </div>
+                    </section>
+                </div>
+
+                <div id="liked-songs-view" class="hidden">
+                    <section class="content-section">
+                        <h2>Liked Songs</h2>
+                        <div class="list-view" id="liked-songs-list">
+                            <!-- Liked songs injected via JS -->
+                        </div>
+                    </section>
+                </div>
+                <div id="playlist-details-view" class="hidden">
+                    <section class="content-section">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <h2 id="playlist-details-title">Playlist</h2>
+                            <button id="delete-playlist-btn" class="btn-secondary" style="border-color: #e74c3c; color: #e74c3c;">Delete Playlist</button>
+                        </div>
+                        <div class="list-view" id="playlist-details-list">
+                            <!-- Playlist songs injected via JS -->
+                        </div>
+                    </section>
+                </div>
+            </main>
+
+        <!-- Player Bar -->
+        <footer class="player-bar">
+            <div class="now-playing">
+                <div class="cover-art" id="current-cover">
+                    <i class="fas fa-music default-cover-icon"></i>
+                </div>
+                <div class="track-info">
+                    <div class="track-title" id="current-title">--</div>
+                    <div class="track-artist" id="current-artist">--</div>
+                </div>
+                <button class="icon-btn heart"><i class="far fa-heart"></i></button>
+            </div>
+            
+            <div class="player-controls">
+                <div class="control-buttons">
+                    <button class="icon-btn"><i class="fas fa-random"></i></button>
+                    <button class="icon-btn" id="prev-btn"><i class="fas fa-step-backward"></i></button>
+                    <button class="icon-btn play-btn" id="play-pause-btn"><i class="fas fa-play"></i></button>
+                    <button class="icon-btn" id="next-btn"><i class="fas fa-step-forward"></i></button>
+                    <button class="icon-btn"><i class="fas fa-redo-alt"></i></button>
+                </div>
+                <div class="playback-bar">
+                    <span id="current-time">0:00</span>
+                    <input type="range" id="progress-bar" min="0" max="100" value="0">
+                    <span id="total-time">0:00</span>
+                </div>
+            </div>
+            
+            <div class="volume-controls">
+                <button class="icon-btn"><i class="fas fa-volume-up"></i></button>
+                <input type="range" id="volume-bar" min="0" max="1" step="0.01" value="1">
+            </div>
+        </footer>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="audio-player"></audio>
+
+    <!-- Add to Playlist Modal -->
+    <div id="playlist-modal" class="hidden" style="position: absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index: 100; display:flex; align-items:center; justify-content:center;">
+        <div style="background:var(--bg-elevated); padding: 24px; border-radius:8px; min-width:300px; max-width: 400px;">
+            <h3 style="margin-bottom: 16px;">Add to Playlist</h3>
+            <div id="modal-playlist-list" style="display:flex; flex-direction:column; gap:8px; max-height: 300px; overflow-y: auto;"></div>
+            <button id="close-modal-btn" class="btn-secondary" style="margin-top:16px; width:100%;">Cancel</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
